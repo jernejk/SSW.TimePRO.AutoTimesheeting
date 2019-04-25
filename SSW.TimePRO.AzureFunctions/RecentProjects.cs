@@ -1,3 +1,4 @@
+using AzureFunctions.Autofac;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -9,12 +10,14 @@ using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AzureFunctions
 {
+    [DependencyInjectionConfig(typeof(DIConfig))]
     public static class RecentProjects
     {
         [FunctionName("RecentProjects")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+            ILogger log,
+            [Inject] IGetRecentProjectsQuery query)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -28,7 +31,7 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(validationModel);
             }
 
-            var query = new GetRecentProjects();
+            //var query = new GetRecentProjectsQuery();
             var result = await query.Execute(tenantUrl, empID, token);
 
             return new JsonResult(result);

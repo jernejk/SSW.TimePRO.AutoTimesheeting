@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects.Queries
 {
-    public class GetRecentProjects
+    public class GetRecentProjectsQuery : IGetRecentProjectsQuery
     {
         public Task<RecentProjectModel[]> Execute(string tenantUrl, string empID, string token)
         {
@@ -15,5 +15,10 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects.Queries
 
             return url.GetJsonAsync<RecentProjectModel[]>();
         }
+    }
+
+    public interface IGetRecentProjectsQuery
+    {
+        Task<RecentProjectModel[]> Execute(string tenantUrl, string empID, string token);
     }
 }
