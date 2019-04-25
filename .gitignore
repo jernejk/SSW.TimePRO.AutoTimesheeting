@@ -59,3 +59,11 @@ typings/
 
 # next.js build output
 .next
+
+# Exclude Cypress stuff that is not necessary or is being generated after every run.
+cypress/screenshots
+cypress/videos
+cypress/integration/examples
+
+# Excluded out of source control as it includes plain text password.
+cypress/fixtures/timepro-login.json
