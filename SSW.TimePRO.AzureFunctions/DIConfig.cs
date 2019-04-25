@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using AzureFunctions.Autofac.Configuration;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.ClientRate;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
 
 namespace SSW.TimePRO.AzureFunctions
@@ -11,6 +12,7 @@ namespace SSW.TimePRO.AzureFunctions
             DependencyInjection.Initialize(builder =>
             {
                 builder.RegisterType<GetRecentProjectsQuery>().As<IGetRecentProjectsQuery>();
+                builder.RegisterType<GetClientRateQuery>().As<IGetClientRateQuery>();
             }, functionName);
         }
     }
