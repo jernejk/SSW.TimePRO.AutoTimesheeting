@@ -16,12 +16,13 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
             {
                 httpTest.RespondWith("245", 200);
 
-                var result = await query.Execute("http://tntUrl.xyz", "JEK", "SSW", "token-1");
+                var request = new GetClientRateRequest("http://tntUrl.xyz", "JEK", "SSW", "token-1");
+                var result = await query.Execute(request);
 
                 result.Should().Be(245m, "service is returning \"245\" as JSON-ish single number.");
                 httpTest.CallLog.Should().HaveCount(1, "should not fail");
                 httpTest
-                    .ShouldHaveCalled("http://tntUrl.xyz/api/ClientRate?empID=JEK&clientID=SSW")
+                    .ShouldHaveCalled("http://tntUrl.xyz/Ajax/GetClientRate?empID=JEK&clientID=SSW")
                     .WithBasicAuth("token-1", string.Empty)
                     .Times(1);
             }
@@ -35,12 +36,13 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
             {
                 httpTest.RespondWith("\"\"", 200);
 
-                var result = await query.Execute("http://tntUrl.xyz", "JEK", "SSW", "token-1");
+                var request = new GetClientRateRequest("http://tntUrl.xyz", "JEK", "SSW", "token-1");
+                var result = await query.Execute(request);
 
                 result.Should().Be(null, "because the service is returning empty double quotes for some reason");
                 httpTest.CallLog.Should().HaveCount(1, "should not fail");
                 httpTest
-                    .ShouldHaveCalled("http://tntUrl.xyz/api/ClientRate?empID=JEK&clientID=SSW")
+                    .ShouldHaveCalled("http://tntUrl.xyz/Ajax/GetClientRate?empID=JEK&clientID=SSW")
                     .WithBasicAuth("token-1", string.Empty)
                     .Times(1);
             }

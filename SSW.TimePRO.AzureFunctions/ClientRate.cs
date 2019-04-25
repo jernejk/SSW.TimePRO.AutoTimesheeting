@@ -32,7 +32,8 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(validationModel);
             }
 
-            var result = await query.Execute(tenantUrl, empID, clientID, token);
+            var request = new GetClientRateRequest(tenantUrl, empID, clientID, token);
+            var result = await query.Execute(request);
 
             return new JsonResult(result);
         }

@@ -17,7 +17,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
                 string response = "[{\"Client\":\"SSWTest\",\"ClientID\":\"SSW\",\"Project\":\"Non-working day (e.g. Leave)\",\"ProjectID\":\"LEAVE\",\"Iteration\":null,\"IterationId\":null,\"Category\":\"Non-working day - Public Holiday\",\"CategoryID\":\"LNWD\",\"DateCreated\":\"\\/Date(1556200800000)\\/\"}]";
                 httpTest.RespondWith(response, 200);
 
-                var result = await query.Execute("http://tntUrl.xyz", "JEK", "token-1");
+                var request = new GetRecentProjectsRequest("http://tntUrl.xyz", "JEK", "token-1");
+                var result = await query.Execute(request);
 
                 result.Should().HaveCount(1, "raw JSON response has only one response");
                 httpTest.CallLog.Should().HaveCount(1, "should not fail");
@@ -36,7 +37,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
             {
                 httpTest.RespondWith("", 200);
 
-                var result = await query.Execute("http://tntUrl.xyz", "JEK", "token-1");
+                var request = new GetRecentProjectsRequest("http://tntUrl.xyz", "JEK", "token-1");
+                var result = await query.Execute(request);
 
                 result.Should().BeNull("empty string results in null");
                 httpTest.CallLog.Should().HaveCount(1, "should not fail");

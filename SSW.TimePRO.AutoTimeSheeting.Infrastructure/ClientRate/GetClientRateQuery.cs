@@ -6,13 +6,13 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.ClientRate
 {
     public class GetClientRateQuery : IGetClientRateQuery
     {
-        public async Task<decimal?> Execute(string tenantUrl, string empID, string clientID, string token)
+        public async Task<decimal?> Execute(GetClientRateRequest request)
         {
-            var url = new Url(tenantUrl)
-                .AppendPathSegment("/api/ClientRate")
-                .SetQueryParam("empID", empID)
-                .SetQueryParam("clientID", clientID)
-                .WithBasicAuth(token, string.Empty);
+            var url = new Url(request.TenantUrl)
+                .AppendPathSegment("/Ajax/GetClientRate")
+                .SetQueryParam("empID", request.EmpID)
+                .SetQueryParam("clientID", request.ClientID)
+                .WithBasicAuth(request.Token, string.Empty);
 
             string rawRate = await url.GetStringAsync();
 
@@ -26,6 +26,6 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.ClientRate
 
     public interface IGetClientRateQuery
     {
-        Task<decimal?> Execute(string tenantUrl, string empID, string clientID, string token);
+        Task<decimal?> Execute(GetClientRateRequest request);
     }
 }

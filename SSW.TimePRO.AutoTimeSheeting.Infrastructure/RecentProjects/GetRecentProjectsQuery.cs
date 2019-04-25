@@ -6,12 +6,12 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects
 {
     public class GetRecentProjectsQuery : IGetRecentProjectsQuery
     {
-        public Task<RecentProjectModel[]> Execute(string tenantUrl, string empID, string token)
+        public Task<RecentProjectModel[]> Execute(GetRecentProjectsRequest request)
         {
-            var url = new Url(tenantUrl)
+            var url = new Url(request.TenantUrl)
                 .AppendPathSegment("/Ajax/GetPreviousProjects")
-                .SetQueryParam("empID", empID)
-                .WithBasicAuth(token, string.Empty);
+                .SetQueryParam("empID", request.EmpID)
+                .WithBasicAuth(request.Token, string.Empty);
 
             return url.GetJsonAsync<RecentProjectModel[]>();
         }
@@ -19,6 +19,6 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects
 
     public interface IGetRecentProjectsQuery
     {
-        Task<RecentProjectModel[]> Execute(string tenantUrl, string empID, string token);
+        Task<RecentProjectModel[]> Execute(GetRecentProjectsRequest request);
     }
 }

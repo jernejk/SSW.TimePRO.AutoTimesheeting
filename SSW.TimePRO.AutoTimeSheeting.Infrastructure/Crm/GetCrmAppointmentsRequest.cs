@@ -4,7 +4,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm
 {
     public class GetCrmAppointmentsRequest : BaseTimeProRequest
     {
-        public GetCrmAppointmentsRequest(string tenantUrl, string empID, DateTime startUtc, DateTime endUtc, string token) : base(tenantUrl, token)
+        public GetCrmAppointmentsRequest(string tenantUrl, string empID, DateTime startUtc, DateTime endUtc, string token)
+            : base(tenantUrl, token)
         {
             EmpID = empID;
             StartUtc = startUtc;
