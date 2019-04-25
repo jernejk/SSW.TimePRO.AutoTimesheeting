@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects.Queries;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
 using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AzureFunctions
@@ -31,7 +31,6 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(validationModel);
             }
 
-            //var query = new GetRecentProjectsQuery();
             var result = await query.Execute(tenantUrl, empID, token);
 
             return new JsonResult(result);

@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using AzureFunctions.Autofac.Configuration;
-using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects.Queries;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
 
 namespace SSW.TimePRO.AzureFunctions
 {

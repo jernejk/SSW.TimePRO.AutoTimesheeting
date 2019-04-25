@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects.Queries
+namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects
 {
     public class RecentProjectModel
     {

@@ -2,7 +2,7 @@
 using Flurl.Http;
 using System.Threading.Tasks;
 
-namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects.Queries
+namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects
 {
     public class GetRecentProjectsQuery : IGetRecentProjectsQuery
     {
