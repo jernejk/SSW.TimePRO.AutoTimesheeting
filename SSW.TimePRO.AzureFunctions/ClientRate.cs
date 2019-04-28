@@ -1,12 +1,12 @@
-using System.Threading.Tasks;
+using AzureFunctions.Autofac;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.ClientRate;
-using AzureFunctions.Autofac;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AzureFunctions
 {
