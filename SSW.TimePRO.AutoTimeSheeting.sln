@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSW.TimePRO.AzureFunctions", "SSW.TimePRO.AzureFunctions\SSW.TimePRO.AzureFunctions.csproj", "{DB94ACED-B356-435A-9A1A-4D092B919818}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSW.TimePRO.AutoTimeSheeting.Infrastructure", "SSW.TimePRO.AutoTimeSheeting.Infrastructure\SSW.TimePRO.AutoTimeSheeting.Infrastructure.csproj", "{A775FD0F-4F7F-4473-97FD-F951A7857524}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSW.TimePRO.AutoTimeSheeting.Infrastructure", "SSW.TimePRO.AutoTimeSheeting.Infrastructure\SSW.TimePRO.AutoTimeSheeting.Infrastructure.csproj", "{A775FD0F-4F7F-4473-97FD-F951A7857524}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests", "SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests\SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests.csproj", "{AA01EA3E-F30F-4F73-B52F-252F9EFB9E6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests", "SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests\SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests.csproj", "{AA01EA3E-F30F-4F73-B52F-252F9EFB9E6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

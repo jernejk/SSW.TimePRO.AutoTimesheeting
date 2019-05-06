@@ -1,10 +1,8 @@
 ﻿using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets
+namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeSheet
 {
     public class SuggestTimeSheetRequest
     {

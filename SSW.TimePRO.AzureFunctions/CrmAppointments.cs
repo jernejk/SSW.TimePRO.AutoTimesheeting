@@ -1,14 +1,14 @@
-using System.Threading.Tasks;
+using AzureFunctions.Autofac;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
-using AzureFunctions.Autofac;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AzureFunctions
 {
@@ -29,6 +29,7 @@ namespace SSW.TimePRO.AzureFunctions
             string endRaw = req.Query["end"];
             string token = req.Query["token"];
 
+            // We still want to validate dates.
             DateTime.TryParse(startRaw, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var start);
             DateTime.TryParse(endRaw, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var end);
 
@@ -38,7 +39,7 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(validationModel);
             }
 
-            var result = await query.Execute(new GetCrmAppointmentsRequest(tenantUrl, empID, start.ToUniversalTime(), end.ToUniversalTime(), token));
+            var result = await query.Execute(new GetCrmAppointmentsRequest(tenantUrl, empID, startRaw, endRaw, token));
 
             return new JsonResult(result);
         }

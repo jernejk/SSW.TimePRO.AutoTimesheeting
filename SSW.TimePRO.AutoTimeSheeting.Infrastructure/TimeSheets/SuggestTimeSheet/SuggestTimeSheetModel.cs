@@ -1,4 +1,4 @@
-﻿namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets
+﻿namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeSheet
 {
     public class SuggestTimeSheetModel
     {
@@ -9,5 +9,6 @@
         public string CategoryID { get; set; }
         public string LocationID { get; set; }
         public string BillableID { get; set; }
+        public string Comment { get; set; }
     }
 }

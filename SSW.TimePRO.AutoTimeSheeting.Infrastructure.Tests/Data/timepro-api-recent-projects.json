@@ -1,0 +1,123 @@
+[
+  {
+    "client": "SSW",
+    "clientID": "SSW",
+    "project": "General & Other Product Development",
+    "projectID": "PD_DEV",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Web Site Development",
+    "categoryID": "WEBDEV",
+    "dateCreated": "2019-05-02T14:00:00Z"
+  },
+  {
+    "client": "SSW",
+    "clientID": "SSW",
+    "project": "Non-working day (e.g. Leave)",
+    "projectID": "LEAVE",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Non-working day - Sick Leave",
+    "categoryID": "LSICK",
+    "dateCreated": "2019-05-01T14:00:00Z"
+  },
+  {
+    "client": "SSW",
+    "clientID": "SSW",
+    "project": "SSW TimePro",
+    "projectID": "TP",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Web Site Development",
+    "categoryID": "WEBDEV",
+    "dateCreated": "2019-04-25T14:00:00Z"
+  },
+  {
+    "client": "SSW",
+    "clientID": "SSW",
+    "project": "Non-working day (e.g. Leave)",
+    "projectID": "LEAVE",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Non-working day - Public Holiday",
+    "categoryID": "LNWD",
+    "dateCreated": "2019-04-24T14:00:00Z"
+  },
+  {
+    "client": "SSW",
+    "clientID": "SSW",
+    "project": "Non-working day (e.g. Leave)",
+    "projectID": "LEAVE",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Non-working day - Annual Leave",
+    "categoryID": "L-ANN",
+    "dateCreated": "2019-04-23T14:00:00Z"
+  },
+  {
+    "client": "Awesome Software & Service GmbH&Co.KG",
+    "clientID": "T2VV5F",
+    "project": "Awesome IAM",
+    "projectID": "DG8WXY",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Web Site Development",
+    "categoryID": "WEBDEV",
+    "dateCreated": "2019-04-10T14:00:00Z"
+  },
+  {
+    "client": "Singular Optics",
+    "clientID": "TEUJA7",
+    "project": "Data Migration and SSRS Project",
+    "projectID": "Z91F25",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Database Development",
+    "categoryID": "DBOFF",
+    "dateCreated": "2019-04-09T14:00:00Z"
+  },
+  {
+    "client": "Cool Investments Limited",
+    "clientID": "O7GQKT",
+    "project": "Ionic App",
+    "projectID": "1C14NA",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Mobile Development",
+    "categoryID": "MOBDEV",
+    "dateCreated": "2019-04-08T14:00:00Z"
+  },
+  {
+    "client": "SSW",
+    "clientID": "SSW",
+    "project": "SSW Sophie Hub",
+    "projectID": "GVOUF1",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Web Site Development",
+    "categoryID": "WEBDEV",
+    "dateCreated": "2019-04-07T14:00:00Z"
+  },
+  {
+    "client": "SSW",
+    "clientID": "SSW",
+    "project": "Non-working day (e.g. Leave)",
+    "projectID": "LEAVE",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Non-working day - Time off in lieu",
+    "categoryID": "LVLU",
+    "dateCreated": "2019-03-14T13:00:00Z"
+  },
+  {
+    "client": "SSW",
+    "clientID": "SSW",
+    "project": "R&D Audit",
+    "projectID": "0OVCTY",
+    "iteration": null,
+    "iterationId": null,
+    "category": "Web Site Development",
+    "categoryID": "WEBDEV",
+    "dateCreated": "2019-03-11T13:00:00Z"
+  }
+]
