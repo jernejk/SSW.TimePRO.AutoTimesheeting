@@ -33,11 +33,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: PublishTestResults@2
-  inputs:
-    testRunner: 'VSTest'
-    testResultsFiles: '**/TEST-*.xml'
-
 - task: PublishBuildArtifacts@1
   inputs:
     ArtifactName: 'drop'
