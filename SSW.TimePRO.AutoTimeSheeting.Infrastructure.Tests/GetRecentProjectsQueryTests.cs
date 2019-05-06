@@ -9,7 +9,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
     public class GetRecentProjectsQueryTests
     {
         [Fact]
-        public async Task ShouldReturnRate()
+        public async Task ShouldRecentProjects()
         {
             var query = new GetRecentProjectsQuery();
             using (var httpTest = new HttpTest())
