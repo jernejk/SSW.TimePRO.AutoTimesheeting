@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using AzureFunctions.Autofac.Configuration;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.ClientRate;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
@@ -21,6 +22,7 @@ namespace SSW.TimePRO.AzureFunctions
                 builder.RegisterType<CollectDataQuery>().As<ICollectDataQuery>();
                 builder.RegisterType<SuggestTimeSheetQuery>().As<ISuggestTimeSheetQuery>();
                 builder.RegisterType<CreateTimeSheetCommand>().As<ICreateTimeSheetCommand>();
+                builder.RegisterType<GetCommitsByEmpIDQuery>().As<IGetCommitsByEmpIDQuery>();
             }, functionName);
         }
     }

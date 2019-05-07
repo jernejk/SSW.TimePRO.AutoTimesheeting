@@ -1,0 +1,170 @@
+{
+  "errors": [],
+  "data": [
+    {
+      "Id": "3077b06736e901fdbd845e9ce7b833e91657e88d",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/3077b06736e901fdbd845e9ce7b833e91657e88d",
+      "Comment": "Added perf test proejct.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549935718000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 01:41 AM"
+    },
+    {
+      "Id": "00f3c448324f45b5e44966f63206aee4c259c93c",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/00f3c448324f45b5e44966f63206aee4c259c93c",
+      "Comment": "Added test for generating seed data.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549936695000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 01:58 AM"
+    },
+    {
+      "Id": "b4ea521379aac0a2009075fd2caec9c0e525f9a7",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/b4ea521379aac0a2009075fd2caec9c0e525f9a7",
+      "Comment": "Merge branch 'Year_2019/Sprint_04/SswAuthPerformance' of https://dev.azure.com/eplandev/EPLAN%20Cloud/_git/CS1-ManagementService into Year_2019/Sprint_04/SswAuthPerformance",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549936700000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 01:58 AM"
+    },
+    {
+      "Id": "401e3036ba0330fe8f1d463338590e163ccaf916",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/401e3036ba0330fe8f1d463338590e163ccaf916",
+      "Comment": "Moved perf project from logical folder PL to BL.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549937036000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 02:03 AM"
+    },
+    {
+      "Id": "737a223dcbd8cdf2118855c44cae1720b7097174",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/737a223dcbd8cdf2118855c44cae1720b7097174",
+      "Comment": "Moved Eplan.ManagementService.Application from root to logical folder BL.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549937113000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 02:05 AM"
+    },
+    {
+      "Id": "82d0414e1166665cc36b632be31c534090066c94",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/82d0414e1166665cc36b632be31c534090066c94",
+      "Comment": "Connect to the DB test.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549939211000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 02:40 AM"
+    },
+    {
+      "Id": "8cb713a7a0ce7e5a67b28ccdfb05214c1f3307b0",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/8cb713a7a0ce7e5a67b28ccdfb05214c1f3307b0",
+      "Comment": "Merge branch 'Year_2019/Sprint_04/SswAuthPerformance' of https://dev.azure.com/eplandev/EPLAN%20Cloud/_git/CS1-ManagementService into Year_2019/Sprint_04/SswAuthPerformance",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549939217000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 02:40 AM"
+    },
+    {
+      "Id": "17b4566fde602f77c80b021d032d79443c3b5bdb",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/17b4566fde602f77c80b021d032d79443c3b5bdb",
+      "Comment": "Moved EfCulkSeedPersister to data layer.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549940077000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 02:54 AM"
+    },
+    {
+      "Id": "5eab804bca8b9d2d2e0941a41b5e3124d1236dc2",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/5eab804bca8b9d2d2e0941a41b5e3124d1236dc2",
+      "Comment": "Completed EfBulkSeedPersister refactor to data layer.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549940281000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 02:58 AM"
+    },
+    {
+      "Id": "8efc917356b9862f8412eef4aedf4215bebe8a4e",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/8efc917356b9862f8412eef4aedf4215bebe8a4e",
+      "Comment": "Connect to DB test now clears all tables and verifies if it can execute a SQL statement.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549943955000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 03:59 AM"
+    },
+    {
+      "Id": "723a81a837d101c3306f9a698069918d16566fa0",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/723a81a837d101c3306f9a698069918d16566fa0",
+      "Comment": "Merge branch 'Year_2019/Sprint_04/SswAuthPerformance' of https://dev.azure.com/eplandev/EPLAN%20Cloud/_git/CS1-ManagementService into Year_2019/Sprint_04/SswAuthPerformance",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549943961000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 03:59 AM"
+    },
+    {
+      "Id": "c8f156cc0c5c53b67fcda5e73249f5fd8032909e",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/c8f156cc0c5c53b67fcda5e73249f5fd8032909e",
+      "Comment": "Added test that do a full seeding process.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549947560000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 04:59 AM"
+    },
+    {
+      "Id": "c40577c79489d8029ba9eedab0e970a270ccd935",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/c40577c79489d8029ba9eedab0e970a270ccd935",
+      "Comment": "Added DB fixture and converted one test.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549949692000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 05:34 AM"
+    },
+    {
+      "Id": "9f03606a2fdea57ef617839e90d2d0353cfb6003",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/9f03606a2fdea57ef617839e90d2d0353cfb6003",
+      "Comment": "Completed seeding DB and making sure we reuse the DB.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549953205000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 06:33 AM"
+    },
+    {
+      "Id": "12e5eb90a6b73c90347f241a9957384a66bf0cc6",
+      "Url": "https://eplandev.visualstudio.com/eabb3851-b325-451b-9add-f0b2505935a7/_apis/git/repositories/8a7de667-cd86-4ee7-877b-2a4ade5cc4b2/commits/12e5eb90a6b73c90347f241a9957384a66bf0cc6",
+      "Comment": "First \"real\" test.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "/Date(1549956627000)/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "Eplan",
+      "FormattedDate": "2019-02-12 07:30 AM"
+    }
+  ]
+}

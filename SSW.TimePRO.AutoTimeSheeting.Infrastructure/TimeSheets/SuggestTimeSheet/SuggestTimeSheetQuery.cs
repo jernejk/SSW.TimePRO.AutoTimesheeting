@@ -1,5 +1,7 @@
-﻿using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
+﻿using SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,7 +36,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
                 result.ProjectID = result.CategoryID != null ? "LEAVE" : null;
             }
 
-            result.Comment = GenerateComment(result, appointment);
+            result.Comment = GenerateComment(result, appointment, request.Commits);
 
             return Task.FromResult(result);
         }
@@ -56,7 +58,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
             return null;
         }
 
-        private string GenerateComment(SuggestTimeSheetModel model, CrmAppointmentModel appointment)
+        private string GenerateComment(SuggestTimeSheetModel model, CrmAppointmentModel appointment, IEnumerable<GitCommitModel> commits)
         {
             if (model.ClientID == "SSW" && model.ProjectID == "LEAVE")
             {
@@ -70,6 +72,18 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
 
                     case "L-ANN":
                         return "Annual leave";
+                }
+            }
+            else if (commits?.Any() == true)
+            {
+                var messages = commits
+                    .Where(c => c.Comment.IndexOf("merge", StringComparison.OrdinalIgnoreCase) != 0)
+                    .Select(c => c.Comment)
+                    .ToList();
+
+                if (messages.Any())
+                {
+                    return $"Commits:\n- {string.Join("\n- ", messages)}";
                 }
             }
 

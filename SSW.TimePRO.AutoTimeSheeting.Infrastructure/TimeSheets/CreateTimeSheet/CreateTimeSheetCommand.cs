@@ -3,6 +3,7 @@ using Flurl.Http;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet
@@ -39,7 +40,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet
 
         private static async Task<string> GenerateBody(CreateTimeSheetRequest request, DateTime date)
         {
-            var form = new System.Net.Http.FormUrlEncodedContent(new List<KeyValuePair<string, string>>
+            var form = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>("EmpTime.TimeID", "0"),
                     new KeyValuePair<string, string>("EmpTime.IsAutomaticComments", "False"),

@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Newtonsoft.Json;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeSheet;
@@ -20,7 +21,11 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
             json = File.ReadAllText("Data/timepro-api-recent-projects.json");
             var recentProjects = JsonConvert.DeserializeObject<RecentProjectModel[]>(json);
 
+            json = File.ReadAllText("Data/timepro-api-commits.json");
+            var commits = JsonConvert.DeserializeObject<GitCommitResult>(json);
+
             appointments.Should().NotBeEmpty();
+            commits.data.Should().NotBeEmpty();
 
             var query = new SuggestTimeSheetQuery();
             var request = new SuggestTimeSheetRequest
@@ -28,7 +33,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
                 Date = "2019-05-07+10",
                 EmpID = "JEK",
                 CrmAppointments = appointments,
-                RecentProjects = recentProjects
+                RecentProjects = recentProjects,
+                Commits = commits.data
             };
 
             var result = await query.Execute(request);
@@ -41,7 +47,19 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
             result.BillableID.Should().Be("B");
             result.LocationID.Should().Be("SSW");
             result.DateCreated.Should().Be("2019-05-07");
-            result.Comment.Should().BeNull();
+            result.Comment.Should().Be($"Commits:\n" +
+                $"- Added perf test proejct.\n" +
+                $"- Added test for generating seed data.\n" +
+                $"- Moved perf project from logical folder PL to BL.\n" +
+                $"- Moved Eplan.ManagementService.Application from root to logical folder BL.\n" +
+                $"- Connect to the DB test.\n" +
+                $"- Moved EfCulkSeedPersister to data layer.\n" +
+                $"- Completed EfBulkSeedPersister refactor to data layer.\n" +
+                $"- Connect to DB test now clears all tables and verifies if it can execute a SQL statement.\n" +
+                $"- Added test that do a full seeding process.\n" +
+                $"- Added DB fixture and converted one test.\n" +
+                $"- Completed seeding DB and making sure we reuse the DB.\n" +
+                $"- First \"real\" test.");
         }
 
         [Theory]
