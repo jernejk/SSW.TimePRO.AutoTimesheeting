@@ -6,6 +6,7 @@ using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.GetTimesheets;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeSheet;
 
 namespace SSW.TimePRO.AzureFunctions
@@ -23,6 +24,7 @@ namespace SSW.TimePRO.AzureFunctions
                 builder.RegisterType<SuggestTimeSheetQuery>().As<ISuggestTimeSheetQuery>();
                 builder.RegisterType<CreateTimeSheetCommand>().As<ICreateTimeSheetCommand>();
                 builder.RegisterType<GetCommitsByEmpIDQuery>().As<IGetCommitsByEmpIDQuery>();
+                builder.RegisterType<GetTimesheetsQuery>().As<IGetTimesheetsQuery>();
             }, functionName);
         }
     }

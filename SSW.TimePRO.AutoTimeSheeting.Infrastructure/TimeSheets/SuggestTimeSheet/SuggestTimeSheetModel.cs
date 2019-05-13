@@ -10,5 +10,6 @@
         public string LocationID { get; set; }
         public string BillableID { get; set; }
         public string Comment { get; set; }
+        public bool AlreadyHasTimesheet { get; set; }
     }
 }

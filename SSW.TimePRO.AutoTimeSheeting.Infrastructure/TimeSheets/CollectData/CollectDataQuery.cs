@@ -1,6 +1,7 @@
 ﻿using SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.GetTimesheets;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,15 +12,18 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
         private readonly IGetRecentProjectsQuery _getRecentProjectsQuery;
         private readonly IGetCrmAppointmentsQuery _getCrmAppointmentsQuery;
         private readonly IGetCommitsByEmpIDQuery _getCommitsByEmpIDQuery;
+        private readonly IGetTimesheetsQuery _getTimesheetsQuery;
 
         public CollectDataQuery(
             IGetRecentProjectsQuery getRecentProjectsQuery,
             IGetCrmAppointmentsQuery getCrmAppointmentsQuery,
-            IGetCommitsByEmpIDQuery getCommitsByEmpIDQuery)
+            IGetCommitsByEmpIDQuery getCommitsByEmpIDQuery,
+            IGetTimesheetsQuery getTimesheetsQuery)
         {
             _getRecentProjectsQuery = getRecentProjectsQuery;
             _getCrmAppointmentsQuery = getCrmAppointmentsQuery;
             _getCommitsByEmpIDQuery = getCommitsByEmpIDQuery;
+            _getTimesheetsQuery = getTimesheetsQuery;
         }
 
         public async Task<CollectDataModel> Execute(CollectDataRequest request)
@@ -42,6 +46,13 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
                     request.EmpID,
                     request.Token));
 
+            var timesheetsTask = _getTimesheetsQuery.Execute(new GetTimesheetsRequest(
+                    request.TenantUrl,
+                    request.EmpID,
+                    request.Date,
+                    request.Date,
+                    request.Token));
+
             data.CrmAppointments = await crmAppointmentsTask;
 
             if (data.CrmAppointments != null && data.CrmAppointments.Any(a => a.clientId != "SSW"))
@@ -54,6 +65,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
             }
 
             data.RecentProjects = await recentProjectsTask;
+            data.Timesheets = await timesheetsTask;
 
             return data;
         }

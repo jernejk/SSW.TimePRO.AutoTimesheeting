@@ -37,6 +37,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
             }
 
             result.Comment = GenerateComment(result, appointment, request.Commits);
+            result.AlreadyHasTimesheet = request?.Timesheets?.Any() == true;
 
             return Task.FromResult(result);
         }

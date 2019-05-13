@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.GetTimesheets;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeSheet;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Xunit;
@@ -96,6 +98,53 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
             result.LocationID.Should().Be("SSW");
             result.DateCreated.Should().Be(date);
             result.Comment.Should().Be(comment);
+            result.AlreadyHasTimesheet.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task ShouldAlreadyHaveTimesheet()
+        {
+            string date = "2019-05-06";
+            string categoryId = "LNWD";
+            string comment = "SSW (SSW) - Labour Day public holiday (QLD only)";
+
+            var json = File.ReadAllText("Data/timepro-api-crm-mixed-client-leave.json");
+            var appointments = JsonConvert.DeserializeObject<CrmAppointmentModel[]>(json);
+
+            json = File.ReadAllText("Data/timepro-api-recent-projects.json");
+            var recentProjects = JsonConvert.DeserializeObject<RecentProjectModel[]>(json);
+
+            appointments.Should().NotBeEmpty();
+
+            var query = new SuggestTimeSheetQuery();
+            var request = new SuggestTimeSheetRequest
+            {
+                Date = date,
+                EmpID = "JEK",
+                CrmAppointments = appointments,
+                RecentProjects = recentProjects,
+                Timesheets = new List<TimesheetModel>
+                {
+                    new TimesheetModel
+                    {
+                        id = 729994442,
+                        title = "SSW (SSW) - Labour Day public holiday (QLD only)"
+                    }
+                }
+            };
+
+            var result = await query.Execute(request);
+
+            result.Should().NotBeNull();
+            result.EmpID.Should().Be("JEK");
+            result.ClientID.Should().Be("SSW");
+            result.ProjectID.Should().Be("LEAVE");
+            result.CategoryID.Should().Be(categoryId);
+            result.BillableID.Should().Be("W");
+            result.LocationID.Should().Be("SSW");
+            result.DateCreated.Should().Be(date);
+            result.Comment.Should().Be(comment);
+            result.AlreadyHasTimesheet.Should().BeTrue();
         }
     }
 }

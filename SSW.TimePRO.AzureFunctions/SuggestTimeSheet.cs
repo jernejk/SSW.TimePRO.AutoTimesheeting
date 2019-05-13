@@ -1,12 +1,10 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using AzureFunctions.Autofac;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeSheet;
@@ -29,6 +27,11 @@ namespace SSW.TimePRO.AzureFunctions
             string empID = req.Query["empID"];
             string date = req.Query["date"];
             string token = req.Query["token"];
+
+            if (string.IsNullOrEmpty(date))
+            {
+                date = DateTime.Today.ToString("yyyy-MM-dd") + "+10";
+            }
 
             date = date?.Replace(" ", "+");
 
