@@ -1,0 +1,60 @@
+{
+  "errors": [],
+  "data": [
+    {
+      "Id": "5abb89992f353055294f3b606235fe81bd005099",
+      "Url": "https://ssw2.visualstudio.com/01065718-901e-4885-a966-c2242214fe03/_apis/git/repositories/ec756d57-52cd-4a2a-b8d4-3064ccc94d69/commits/5abb89992f353055294f3b606235fe81bd005099",
+      "Comment": "Merge branch \u0027master\u0027 of https://ssw2.visualstudio.com/_git/SSW.TimeProDotNet into features/42401-prepaid-invoice-email-template",
+      "By": "Jernej Kavka (JK)",
+      "Date": "\/Date(1555548208000)\/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "SSW2",
+      "FormattedDate": "2019-04-18 12:43 AM"
+    },
+    {
+      "Id": "dbf352b91bf279436d5ab955458148a2a215bf47",
+      "Url": "https://ssw2.visualstudio.com/01065718-901e-4885-a966-c2242214fe03/_apis/git/repositories/ec756d57-52cd-4a2a-b8d4-3064ccc94d69/commits/dbf352b91bf279436d5ab955458148a2a215bf47",
+      "Comment": "Added invoice templates.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "\/Date(1555560677000)\/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "SSW2",
+      "FormattedDate": "2019-04-18 04:11 AM"
+    },
+    {
+      "Id": "70e3fb08c0484efb4f3901c6082315485f0634e5",
+      "Url": "https://ssw2.visualstudio.com/01065718-901e-4885-a966-c2242214fe03/_apis/git/repositories/ec756d57-52cd-4a2a-b8d4-3064ccc94d69/commits/70e3fb08c0484efb4f3901c6082315485f0634e5",
+      "Comment": "Fixed SharePoint connectivity issue from local machine.",
+      "By": "Jernej Kavka (JK)",
+      "Date": "\/Date(1555560704000)\/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "SSW2",
+      "FormattedDate": "2019-04-18 04:11 AM"
+    },
+    {
+      "Id": "c54149a1975a45097bee8a9b8a24075739125873",
+      "Url": "https://ssw2.visualstudio.com/01065718-901e-4885-a966-c2242214fe03/_apis/git/repositories/ec756d57-52cd-4a2a-b8d4-3064ccc94d69/commits/c54149a1975a45097bee8a9b8a24075739125873",
+      "Comment": "Ignore .angulardocs.json",
+      "By": "Jernej Kavka (JK)",
+      "Date": "\/Date(1555560796000)\/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "SSW2",
+      "FormattedDate": "2019-04-18 04:13 AM"
+    },
+    {
+      "Id": "4e670334aa74d0737405a3095c0fe4648c19c564",
+      "Url": "https://ssw2.visualstudio.com/01065718-901e-4885-a966-c2242214fe03/_apis/git/repositories/ec756d57-52cd-4a2a-b8d4-3064ccc94d69/commits/4e670334aa74d0737405a3095c0fe4648c19c564",
+      "Comment": "Merge pull request 151 from features/42401-prepaid-invoice-email-template into master",
+      "By": "Jernej Kavka",
+      "Date": "\/Date(1555560810000)\/",
+      "Changes": 3,
+      "WorkItems": null,
+      "TfsConnectionName": "SSW2",
+      "FormattedDate": "2019-04-18 04:13 AM"
+    }
+  ]
+}

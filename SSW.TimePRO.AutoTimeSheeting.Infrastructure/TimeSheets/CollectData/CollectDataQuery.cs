@@ -53,17 +53,14 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
                     request.Date,
                     request.Token));
 
-            data.CrmAppointments = await crmAppointmentsTask;
 
-            if (data.CrmAppointments != null && data.CrmAppointments.Any(a => a.clientId != "SSW"))
-            {
-                data.Commits = await _getCommitsByEmpIDQuery.Execute(new GetCommitsByEmpIDRequest(
+            data.Commits = await _getCommitsByEmpIDQuery.Execute(new GetCommitsByEmpIDRequest(
                     request.TenantUrl,
                     request.EmpID,
                     request.Date,
                     request.Token));
-            }
 
+            data.CrmAppointments = await crmAppointmentsTask;
             data.RecentProjects = await recentProjectsTask;
             data.Timesheets = await timesheetsTask;
 

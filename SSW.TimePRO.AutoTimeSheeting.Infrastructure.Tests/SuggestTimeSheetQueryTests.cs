@@ -64,6 +64,47 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
                 $"- First \"real\" test.");
         }
 
+        // Sophie is currently not supported as it can take almost 2 minutes to get results from Azure DevOps.
+        [Theory]
+        [InlineData("Data/timepro-api-commits-timepro.json", "2019-04-18", "TP", "WEBDEV", "Commits:\n- Added invoice templates.\n- Fixed SharePoint connectivity issue from local machine.\n- Ignore .angulardocs.json")]
+        [InlineData("Data/timepro-api-commits-empty.json", "2019-03-12", null, null, null)]
+        //[InlineData("Data/timepro-api-commits-sophie.json", "2019-03-14", "GVOUF1", "WEBDEV", "Commits:\n- Added default timezone as a configuration\n- Minor refactor of the name\n- Added storybook\n- Added more storybooks")]
+        public async Task ShouldSuggestInternalWorkTimeSheet(string gitCommitsFile, string date, string projectId, string categoryId, string comment)
+        {
+            var json = File.ReadAllText("Data/timepro-api-crm-mixed-client-leave.json");
+            var appointments = JsonConvert.DeserializeObject<CrmAppointmentModel[]>(json);
+
+            json = File.ReadAllText("Data/timepro-api-recent-projects.json");
+            var recentProjects = JsonConvert.DeserializeObject<RecentProjectModel[]>(json);
+
+            json = File.ReadAllText(gitCommitsFile);
+            var commits = JsonConvert.DeserializeObject<GitCommitResult>(json);
+
+            appointments.Should().NotBeEmpty();
+
+            var query = new SuggestTimeSheetQuery();
+            var request = new SuggestTimeSheetRequest
+            {
+                Date = date + "+10",
+                EmpID = "JEK",
+                CrmAppointments = appointments,
+                RecentProjects = recentProjects,
+                Commits = commits.data
+            };
+
+            var result = await query.Execute(request);
+
+            result.Should().NotBeNull();
+            result.EmpID.Should().Be("JEK");
+            result.ClientID.Should().Be("SSW");
+            result.ProjectID.Should().Be(projectId);
+            result.CategoryID.Should().Be(categoryId);
+            result.BillableID.Should().Be("W");
+            result.LocationID.Should().Be("SSW");
+            result.DateCreated.Should().Be(date);
+            result.Comment.Should().Be(comment);
+        }
+
         [Theory]
         [InlineData("2019-05-06", "LNWD", "SSW (SSW) - Labour Day public holiday (QLD only)")]
         [InlineData("2019-04-23", "L-ANN", "Annual leave")]

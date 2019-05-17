@@ -32,8 +32,19 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
 
             if (appointment == null || appointment.clientId == "SSW")
             {
+                result.ClientID = "SSW";
                 result.CategoryID = GetLeaveCategoryId(appointment?.title);
                 result.ProjectID = result.CategoryID != null ? "LEAVE" : null;
+
+                if (result.ProjectID == null)
+                {
+                    bool isTimePro = request.Commits?.Any(c => c.TfsConnectionName == "SSW2" && c.Url.Contains("repositories/ec756d57-52cd-4a2a-b8d4-3064ccc94d69")) == true;
+                    if (isTimePro)
+                    {
+                        result.ProjectID = "TP";
+                        result.CategoryID = "WEBDEV";
+                    }
+                }
             }
 
             result.Comment = GenerateComment(result, appointment, request.Commits);
