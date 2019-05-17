@@ -58,7 +58,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet
             var content = await form.ReadAsStringAsync();
             content += $"&EmpTime.TimeStart=8%3A00+AM&EmpTime.TimeEnd=5%3A00+PM&EmpTime.TimeLess=1&TotalTimeTextBox=8";
             content += $"&EmpTime.BillableID={request.BillableID}&EmpTime.IsBillingTypeOverridden=false";
-            content += $"&EmpTime.SellPrice={request.Rate}&EmpTime.SalesTaxPct=0.1&EmpCreated=&EmpUpdated=&SaveType=Add";
+            content += $"&EmpTime.SellPrice={request.ClientEmpRate}&EmpTime.SalesTaxPct={request.ClientTaxRate}&EmpCreated=&EmpUpdated=&SaveType=Add";
             content += "&Note=" + WebUtility.UrlEncode(request.Comment);
             return content;
         }

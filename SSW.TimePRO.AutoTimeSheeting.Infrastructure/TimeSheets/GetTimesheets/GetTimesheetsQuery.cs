@@ -15,7 +15,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.GetTimesheets
 
             if (request.Start == request.End)
             {
-                endDate = endDate.AddDays(1);
+                endDate = endDate.AddDays(1).AddMinutes(-1);
             }
 
             var url = new Url(request.TenantUrl)

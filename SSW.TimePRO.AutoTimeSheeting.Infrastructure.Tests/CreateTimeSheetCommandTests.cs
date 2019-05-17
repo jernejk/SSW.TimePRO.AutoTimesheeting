@@ -31,7 +31,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
                     CategoryID = "LNWD",
                     LocationID = "SSW",
                     BillableID = "W",
-                    Rate = 245m,
+                    ClientEmpRate = 245m,
+                    ClientTaxRate = 0.1m,
                     Comment = "SSW (SSW) - Labour Day public holiday (QLD & SI only)"
                 };
 

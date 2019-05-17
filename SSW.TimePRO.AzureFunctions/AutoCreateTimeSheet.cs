@@ -68,18 +68,27 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(model);
             }
 
-            var rate = await getClientRateQuery.Execute(new GetClientRateRequest(tenantUrl, empID, timesheet.ClientID, token));
-            if (rate == null)
+            var clientRate = await getClientRateQuery.Execute(new GetClientRateRequest(tenantUrl, empID, timesheet.ClientID, token));
+            if (clientRate?.ClientEmpRate == null || clientRate?.ClientTaxRate == null)
             {
                 var model = new ModelStateDictionary();
-                model.AddModelError("rate", "Rate is not available");
+                if (clientRate?.ClientEmpRate == null)
+                {
+                    model.AddModelError(nameof(clientRate.ClientEmpRate), "Client employee rate is not available");
+                }
+
+                if (clientRate?.ClientTaxRate == null)
+                {
+                    model.AddModelError(nameof(clientRate.ClientTaxRate), "Client tax rate is not available");
+                }
+
                 return new BadRequestObjectResult(model);
             }
 
             var result = new AutoCreateTimeSheetModel
             {
                 SuggestTimeSheet = timesheet,
-                Rate = rate
+                ClientRate = clientRate
             };
 
             if (isDebug)
@@ -91,7 +100,7 @@ namespace SSW.TimePRO.AzureFunctions
             {
                 try
                 {
-                    var request = new CreateTimeSheetRequest(tenantUrl, timesheet, rate.Value, token);
+                    var request = new CreateTimeSheetRequest(tenantUrl, timesheet, clientRate.ClientEmpRate.Value, clientRate.ClientTaxRate.Value, token);
                     var success = await createTimeSheetCommand.Execute(request);
                     result.IsCreated = success.IsSuccessful;
                 }

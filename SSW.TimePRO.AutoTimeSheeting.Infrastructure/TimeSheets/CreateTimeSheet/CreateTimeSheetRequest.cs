@@ -9,7 +9,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet
         {
         }
 
-        public CreateTimeSheetRequest(string tenantUrl, SuggestTimeSheetModel timesheet, decimal rate, string token)
+        public CreateTimeSheetRequest(string tenantUrl, SuggestTimeSheetModel timesheet, decimal clientEmpRate, decimal clientTaxRate, string token)
             : this(tenantUrl, token)
         {
             EmpID = timesheet.EmpID;
@@ -19,7 +19,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet
             CategoryID = timesheet.CategoryID;
             LocationID = timesheet.LocationID;
             BillableID = timesheet.BillableID;
-            Rate = rate;
+            ClientEmpRate = clientEmpRate;
+            ClientTaxRate = clientTaxRate;
             Comment = timesheet.Comment;
         }
 
@@ -30,7 +31,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet
         public string CategoryID { get; set; }
         public string LocationID { get; set; }
         public string BillableID { get; set; }
-        public decimal Rate { get; set; }
+        public decimal ClientEmpRate { get; set; }
+        public decimal ClientTaxRate { get; set; }
         public string Comment { get; set; }
     }
 }

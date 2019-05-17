@@ -23,7 +23,11 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests.Integration
             var mockQuery = new Mock<IGetClientRateQuery>();
             mockQuery
                 .Setup(x => x.Execute(It.IsAny<GetClientRateRequest>()))
-                .ReturnsAsync(255);
+                .ReturnsAsync(new ClientRateModel
+                {
+                    ClientEmpRate = 245m,
+                    ClientTaxRate = 0.1m
+                });
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
             var queryParam = new Dictionary<string, StringValues>
@@ -37,7 +41,11 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests.Integration
             var response = await AzureFunctions.ClientRate.Run(request, _logger, mockQuery.Object);
 
             response.Should().BeOfType<JsonResult>();
-            ((JsonResult)response).Value.ToString().Should().Be("255");
+            var result = ((JsonResult)response).Value as ClientRateModel;
+
+            result.Should().NotBeNull();
+            result.ClientEmpRate.Should().Be(245m);
+            result.ClientTaxRate.Should().Be(0.1m);
         }
 
         [Fact]
