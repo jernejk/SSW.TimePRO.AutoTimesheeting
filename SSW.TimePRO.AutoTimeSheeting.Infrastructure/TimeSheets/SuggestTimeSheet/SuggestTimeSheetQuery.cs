@@ -38,10 +38,29 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
 
                 if (result.ProjectID == null)
                 {
-                    bool isTimePro = request.Commits?.Any(c => c.TfsConnectionName == "SSW2" && c.Url.Contains("repositories/ec756d57-52cd-4a2a-b8d4-3064ccc94d69")) == true;
-                    if (isTimePro)
+                    string repoName = request.Commits?
+                        .Where(c => !string.IsNullOrEmpty(c.RepoName))
+                        .Select(c => c.RepoName)
+                        .FirstOrDefault();
+
+                    // SSW.Bots.TimeSheets, SSW.Sophie.Web
+                    repoName = repoName?.ToLowerInvariant() ?? string.Empty;
+                    if (repoName.Equals("SSW.TimeProDotNet", StringComparison.OrdinalIgnoreCase)
+                        || repoName.Equals("SSW.Bots.TimeSheets", StringComparison.OrdinalIgnoreCase))
                     {
                         result.ProjectID = "TP";
+                    }
+                    else if (repoName.IndexOf("bot", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        result.ProjectID = "8897DK";
+                    }
+                    else if (repoName.IndexOf("Sophie", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        result.ProjectID = "GVOUF1";
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(result.ProjectID))
+                    {
                         result.CategoryID = "WEBDEV";
                     }
                 }

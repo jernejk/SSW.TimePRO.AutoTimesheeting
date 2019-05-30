@@ -18,6 +18,6 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps
         public int Changes { get; set; }
         public string TfsConnectionName { get; set; }
         public string FormattedDate { get; set; }
+        public string RepoName { get; set; }
     }
-
 }

@@ -6,77 +6,84 @@
       "Url": "https://ssw.visualstudio.com/2bb2b541-f264-4969-9259-0e9ea6065fd7/_apis/git/repositories/63fa5903-ba8a-4652-b497-a3ab0bfe4546/commits/4b65ff710b64a34d3ab2b68e76036cbfbf46f2d5",
       "Comment": "Added default timezone as a configuration",
       "By": "Jernej Kavka (JK)",
-      "Date": "\/Date(1552524808000)\/",
+      "Date": "/Date(1552524808000)/",
       "Changes": 3,
       "WorkItems": null,
       "TfsConnectionName": "SSW VisualStudio.com TFS - 1",
-      "FormattedDate": "2019-03-14 12:53 AM"
+      "FormattedDate": "2019-03-14 12:53 AM",
+      "RepoName": "SSW.Sophie.Web"
     },
     {
       "Id": "7958797373e88d430deb43390eb8d8b9b0c999a6",
       "Url": "https://ssw.visualstudio.com/2bb2b541-f264-4969-9259-0e9ea6065fd7/_apis/git/repositories/63fa5903-ba8a-4652-b497-a3ab0bfe4546/commits/7958797373e88d430deb43390eb8d8b9b0c999a6",
       "Comment": "Minor refactor of the name",
       "By": "Jernej Kavka (JK)",
-      "Date": "\/Date(1552524822000)\/",
+      "Date": "/Date(1552524822000)/",
       "Changes": 3,
       "WorkItems": null,
       "TfsConnectionName": "SSW VisualStudio.com TFS - 1",
-      "FormattedDate": "2019-03-14 12:53 AM"
+      "FormattedDate": "2019-03-14 12:53 AM",
+      "RepoName": "SSW.Sophie.Web"
     },
     {
       "Id": "d1395bf97a10837220c978fd94139c9dd74dfaee",
       "Url": "https://ssw.visualstudio.com/2bb2b541-f264-4969-9259-0e9ea6065fd7/_apis/git/repositories/63fa5903-ba8a-4652-b497-a3ab0bfe4546/commits/d1395bf97a10837220c978fd94139c9dd74dfaee",
       "Comment": "Merge pull request 1695 from bugs/39508-local-time into master",
       "By": "Jernej Kavka (JK)",
-      "Date": "\/Date(1552524831000)\/",
+      "Date": "/Date(1552524831000)/",
       "Changes": 3,
       "WorkItems": null,
       "TfsConnectionName": "SSW VisualStudio.com TFS - 1",
-      "FormattedDate": "2019-03-14 12:53 AM"
+      "FormattedDate": "2019-03-14 12:53 AM",
+      "RepoName": "SSW.Sophie.Web"
     },
     {
       "Id": "30e000d9ecb9a2b16f0241317fac52c72d44e587",
       "Url": "https://ssw.visualstudio.com/2bb2b541-f264-4969-9259-0e9ea6065fd7/_apis/git/repositories/63fa5903-ba8a-4652-b497-a3ab0bfe4546/commits/30e000d9ecb9a2b16f0241317fac52c72d44e587",
       "Comment": "Added storybook",
       "By": "Jernej Kavka (JK)",
-      "Date": "\/Date(1552530070000)\/",
+      "Date": "/Date(1552530070000)/",
       "Changes": 3,
       "WorkItems": null,
       "TfsConnectionName": "SSW VisualStudio.com TFS - 1",
-      "FormattedDate": "2019-03-14 02:21 AM"
+      "FormattedDate": "2019-03-14 02:21 AM",
+      "RepoName": "SSW.Sophie.Web"
     },
     {
       "Id": "daba98faf32a066b4f33ce97cc7e744fa5fbf940",
       "Url": "https://ssw.visualstudio.com/2bb2b541-f264-4969-9259-0e9ea6065fd7/_apis/git/repositories/63fa5903-ba8a-4652-b497-a3ab0bfe4546/commits/daba98faf32a066b4f33ce97cc7e744fa5fbf940",
       "Comment": "Added more storybooks",
       "By": "Jernej Kavka (JK)",
-      "Date": "\/Date(1552537637000)\/",
+      "Date": "/Date(1552537637000)/",
       "Changes": 3,
       "WorkItems": null,
       "TfsConnectionName": "SSW VisualStudio.com TFS - 1",
-      "FormattedDate": "2019-03-14 04:27 AM"
+      "FormattedDate": "2019-03-14 04:27 AM",
+      "RepoName": "SSW.Sophie.Web"
     },
     {
       "Id": "2bed684f429a6c072bfd43396b25568e109b7125",
       "Url": "https://ssw.visualstudio.com/2bb2b541-f264-4969-9259-0e9ea6065fd7/_apis/git/repositories/63fa5903-ba8a-4652-b497-a3ab0bfe4546/commits/2bed684f429a6c072bfd43396b25568e109b7125",
       "Comment": "Merge pull request 1698 from features/storybook into master",
       "By": "Jernej Kavka (JK)",
-      "Date": "\/Date(1552538114000)\/",
+      "Date": "/Date(1552538114000)/",
       "Changes": 3,
       "WorkItems": null,
       "TfsConnectionName": "SSW VisualStudio.com TFS - 1",
-      "FormattedDate": "2019-03-14 04:35 AM"
+      "FormattedDate": "2019-03-14 04:35 AM",
+      "RepoName": "SSW.Sophie.Web"
     },
     {
       "Id": "cb55854333f1122a4f75751fad0addf38f2d1a36",
       "Url": "https://ssw.visualstudio.com/2bb2b541-f264-4969-9259-0e9ea6065fd7/_apis/git/repositories/63fa5903-ba8a-4652-b497-a3ab0bfe4546/commits/cb55854333f1122a4f75751fad0addf38f2d1a36",
       "Comment": "Merged PR 1695: Added support for the local timezone of the device",
       "By": "Jernej Kavka (JK)",
-      "Date": "\/Date(1552538603000)\/",
+      "Date": "/Date(1552538603000)/",
       "Changes": 3,
       "WorkItems": null,
       "TfsConnectionName": "SSW VisualStudio.com TFS - 1",
-      "FormattedDate": "2019-03-14 04:43 AM"
+      "FormattedDate": "2019-03-14 04:43 AM",
+      "RepoName": "SSW.Sophie.Web"
     }
   ]
 }
