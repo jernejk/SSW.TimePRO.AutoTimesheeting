@@ -21,7 +21,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps
             var subs = await url.GetJsonAsync<AzureDevOpsSubscriptionResult>();
 
             // SSW Azure DevOps are not supported ATM.
-            var subscriptions = subs.data.Where(s => s.Name.IndexOf("SSW", StringComparison.OrdinalIgnoreCase) < 0 || s.Name == "SSW2");
+            var subscriptions = subs.data;
 
             var commits = await Task.WhenAll(subscriptions.Select(s => GetCommits(request, s)));
             return commits.SelectMany(c => c);
