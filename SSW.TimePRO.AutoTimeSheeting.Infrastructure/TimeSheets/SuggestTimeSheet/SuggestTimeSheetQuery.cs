@@ -59,10 +59,13 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
                         result.ProjectID = "GVOUF1";
                     }
 
-                    if (!string.IsNullOrWhiteSpace(result.ProjectID))
+                    // Default to TimePro for now.
+                    if (string.IsNullOrWhiteSpace(result.ProjectID))
                     {
-                        result.CategoryID = "WEBDEV";
+                        result.ProjectID = "TP";
                     }
+
+                    result.CategoryID = "WEBDEV";
                 }
             }
 
