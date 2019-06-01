@@ -27,7 +27,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
                 CategoryID = project?.CategoryID,
                 BillableID = project?.ClientID != null && project?.ClientID.Equals("SSW") != true ? "B" : "W",
                 LocationID = "SSW",
-                DateCreated = date
+                DateCreated = date,
+                SuggestedActions = new SuggestedActions()
             };
 
             if (appointment == null || appointment.clientId == "SSW")
@@ -62,15 +63,27 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
                     // Default to TimePro for now.
                     if (string.IsNullOrWhiteSpace(result.ProjectID))
                     {
+                        result.SuggestedActions.SelectProject = true;
                         result.ProjectID = "TP";
                     }
 
                     result.CategoryID = "WEBDEV";
                 }
             }
+            else
+            {
+                // If there are more than 2 projects for the same client, suggested action is to select a project.
+                result.SuggestedActions.SelectProject = request.RecentProjects
+                    .Count(a => a.ClientID.Equals(appointment?.clientId, StringComparison.OrdinalIgnoreCase)) > 1;
+            }
 
             result.Comment = GenerateComment(result, appointment, request.Commits);
             result.AlreadyHasTimesheet = request?.Timesheets?.Any() == true;
+
+            if (string.IsNullOrWhiteSpace(result.Comment))
+            {
+                result.SuggestedActions.EnterDescription = true;
+            }
 
             return Task.FromResult(result);
         }

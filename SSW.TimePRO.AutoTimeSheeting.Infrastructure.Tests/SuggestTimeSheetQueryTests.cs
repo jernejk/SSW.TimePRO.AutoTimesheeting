@@ -62,15 +62,110 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
                 $"- Added DB fixture and converted one test.\n" +
                 $"- Completed seeding DB and making sure we reuse the DB.\n" +
                 $"- First \"real\" test.");
+            result.SuggestedActions.Should().NotBeNull();
+            result.SuggestedActions.SelectProject.Should().BeFalse();
+            result.SuggestedActions.EnterDescription.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task ShouldSuggestBillableTimeSheetWithNoDescription()
+        {
+            var json = File.ReadAllText("Data/timepro-api-crm-mixed-client-leave.json");
+            var appointments = JsonConvert.DeserializeObject<CrmAppointmentModel[]>(json);
+
+            json = File.ReadAllText("Data/timepro-api-recent-projects.json");
+            var recentProjects = JsonConvert.DeserializeObject<RecentProjectModel[]>(json);
+
+            json = File.ReadAllText("Data/timepro-api-commits-empty.json");
+            var commits = JsonConvert.DeserializeObject<GitCommitResult>(json);
+
+            appointments.Should().NotBeEmpty();
+
+            var query = new SuggestTimeSheetQuery();
+            var request = new SuggestTimeSheetRequest
+            {
+                Date = "2019-05-07+10",
+                EmpID = "JEK",
+                CrmAppointments = appointments,
+                RecentProjects = recentProjects,
+                Commits = commits.data
+            };
+
+            var result = await query.Execute(request);
+
+            result.Should().NotBeNull();
+            result.EmpID.Should().Be("JEK");
+            result.ClientID.Should().Be("T2VV5F");
+            result.ProjectID.Should().Be("DG8WXY");
+            result.CategoryID.Should().Be("WEBDEV");
+            result.BillableID.Should().Be("B");
+            result.LocationID.Should().Be("SSW");
+            result.DateCreated.Should().Be("2019-05-07");
+            result.Comment.Should().BeNullOrEmpty();
+            result.SuggestedActions.Should().NotBeNull();
+            result.SuggestedActions.SelectProject.Should().BeFalse();
+            result.SuggestedActions.EnterDescription.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task ShouldSuggestBillableTimeSheetWithSuggestedActions()
+        {
+            var json = File.ReadAllText("Data/timepro-api-crm-mixed-client-leave.json");
+            var appointments = JsonConvert.DeserializeObject<CrmAppointmentModel[]>(json);
+
+            json = File.ReadAllText("Data/timepro-api-recent-projects.json");
+            var recentProjects = JsonConvert.DeserializeObject<List<RecentProjectModel>>(json);
+            recentProjects.Add(new RecentProjectModel
+            {
+                Client = "Awesome Software & Service GmbH&Co.KG",
+                ClientID = "T2VV5F",
+                Project = "Awesome IAM #2",
+                ProjectID = "DG8WXY2",
+                Iteration = null,
+                IterationId = null,
+                Category = "Web Site Development",
+                CategoryID = "WEBDEV",
+                DateCreated = new System.DateTime(2019, 4, 10)
+            });
+
+            json = File.ReadAllText("Data/timepro-api-commits-empty.json");
+            var commits = JsonConvert.DeserializeObject<GitCommitResult>(json);
+
+            appointments.Should().NotBeEmpty();
+
+            var query = new SuggestTimeSheetQuery();
+            var request = new SuggestTimeSheetRequest
+            {
+                Date = "2019-05-07+10",
+                EmpID = "JEK",
+                CrmAppointments = appointments,
+                RecentProjects = recentProjects,
+                Commits = commits.data
+            };
+
+            var result = await query.Execute(request);
+
+            result.Should().NotBeNull();
+            result.EmpID.Should().Be("JEK");
+            result.ClientID.Should().Be("T2VV5F");
+            result.ProjectID.Should().Be("DG8WXY");
+            result.CategoryID.Should().Be("WEBDEV");
+            result.BillableID.Should().Be("B");
+            result.LocationID.Should().Be("SSW");
+            result.DateCreated.Should().Be("2019-05-07");
+            result.Comment.Should().BeNullOrEmpty();
+            result.SuggestedActions.Should().NotBeNull();
+            result.SuggestedActions.SelectProject.Should().BeTrue();
+            result.SuggestedActions.EnterDescription.Should().BeTrue();
         }
 
         // Sophie is currently not supported as it can take almost 2 minutes to get results from Azure DevOps.
         [Theory]
-        [InlineData("Data/timepro-api-commits-timepro.json", "2019-04-18", "TP", "WEBDEV", "Commits:\n- Added invoice templates.\n- Fixed SharePoint connectivity issue from local machine.\n- Ignore .angulardocs.json")]
-        [InlineData("Data/timepro-api-commits-empty.json", "2019-03-12", "TP", "WEBDEV", null)]
-        [InlineData("Data/timepro-api-commits-sophie.json", "2019-03-14", "GVOUF1", "WEBDEV", "Commits:\n- Added default timezone as a configuration\n- Minor refactor of the name\n- Added storybook\n- Added more storybooks")]
-        [InlineData("Data/timepro-api-commits-sophie-ai.json", "2019-03-14", "8897DK", "WEBDEV", "Commits:\n- Improved response for \"Who works in Melbourne?\" question.\n- Added Postman collections for testing.")]
-        public async Task ShouldSuggestInternalWorkTimeSheet(string gitCommitsFile, string date, string projectId, string categoryId, string comment)
+        [InlineData("Data/timepro-api-commits-timepro.json", "2019-04-18", "TP", "WEBDEV", "Commits:\n- Added invoice templates.\n- Fixed SharePoint connectivity issue from local machine.\n- Ignore .angulardocs.json", false, false)]
+        [InlineData("Data/timepro-api-commits-empty.json", "2019-03-12", "TP", "WEBDEV", null, true, true)]
+        [InlineData("Data/timepro-api-commits-sophie.json", "2019-03-14", "GVOUF1", "WEBDEV", "Commits:\n- Added default timezone as a configuration\n- Minor refactor of the name\n- Added storybook\n- Added more storybooks", false, false)]
+        [InlineData("Data/timepro-api-commits-sophie-ai.json", "2019-03-14", "8897DK", "WEBDEV", "Commits:\n- Improved response for \"Who works in Melbourne?\" question.\n- Added Postman collections for testing.", false, false)]
+        public async Task ShouldSuggestInternalWorkTimeSheet(string gitCommitsFile, string date, string projectId, string categoryId, string comment, bool shouldSelectProject, bool shouldEnterDescription)
         {
             var json = File.ReadAllText("Data/timepro-api-crm-mixed-client-leave.json");
             var appointments = JsonConvert.DeserializeObject<CrmAppointmentModel[]>(json);
@@ -104,6 +199,9 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
             result.LocationID.Should().Be("SSW");
             result.DateCreated.Should().Be(date);
             result.Comment.Should().Be(comment);
+            result.SuggestedActions.Should().NotBeNull();
+            result.SuggestedActions.SelectProject.Should().Be(shouldSelectProject);
+            result.SuggestedActions.EnterDescription.Should().Be(shouldEnterDescription);
         }
 
         [Theory]

@@ -11,5 +11,14 @@
         public string BillableID { get; set; }
         public string Comment { get; set; }
         public bool AlreadyHasTimesheet { get; set; }
+
+        public SuggestedActions SuggestedActions { get; set; }
+    }
+
+    public class SuggestedActions
+    {
+        public bool SelectProject { get; set; }
+
+        public bool EnterDescription { get; set; }
     }
 }
