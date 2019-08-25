@@ -15,7 +15,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet
             var date = DateTime.Parse(request.DateCreated);
             var url = new Url(request.TenantUrl)
                 .AppendPathSegment($"/Timesheet/{request.EmpID}/{date.ToString("yyyy-MM-dd")}/Add")
-                .WithBasicAuth(request.Token, string.Empty)
+                // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                .WithHeader("Authorization", $"Basic {request.Token}")
                 .WithHeader("Content-Type", "application/x-www-form-urlencoded");
 
             var result = new CreateTimeSheetModel();

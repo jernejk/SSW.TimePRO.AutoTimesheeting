@@ -2,7 +2,6 @@
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.GetTimesheets;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
@@ -46,7 +45,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
                     request.EmpID,
                     request.Token));
 
-            var timesheetsTask = _getTimesheetsQuery.Execute(new GetTimesheetsRequest(
+            Task<TimesheetModel[]> timesheetsTask = _getTimesheetsQuery.Execute(new GetTimesheetsRequest(
                     request.TenantUrl,
                     request.EmpID,
                     request.Date,

@@ -16,7 +16,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps
             var url = new Url(request.TenantUrl)
                 .AppendPathSegment("/Ajax/GetTfsSubscriptions")
                 .SetQueryParam("employeeID", request.EmpID)
-                .WithBasicAuth(request.Token, string.Empty);
+                // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                .WithHeader("Authorization", $"Basic {request.Token}");
 
             var subs = await url.GetJsonAsync<AzureDevOpsSubscriptionResult>();
 
@@ -46,7 +47,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps
             var url = new Url(request.TenantUrl)
                 .AppendPathSegment("/Ajax/GetTfsSubChangeHistory")
                 .WithHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
-                .WithBasicAuth(request.Token, string.Empty);
+                // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                .WithHeader("Authorization", $"Basic {request.Token}");
 
             var response = await url.PostStringAsync(content);
             var json = await response.Content.ReadAsStringAsync();

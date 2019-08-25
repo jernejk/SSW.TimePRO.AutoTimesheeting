@@ -18,7 +18,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.ClientRate
                 .AppendPathSegment("Ajax/GetClientTaxRate")
                 .SetQueryParam("clientID", request.ClientID)
                 .SetQueryParam("timesheetID", 0)
-                .WithBasicAuth(request.Token, string.Empty);
+                // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                .WithHeader("Authorization", $"Basic {request.Token}");
 
             var clientEmpRateTask = GetRateFromRequest(clientEmpRateRequest);
             var clientTaxRateTask = GetRateFromRequest(clientTaxRateRequest);

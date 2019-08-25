@@ -23,7 +23,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.GetTimesheets
                 .SetQueryParam("employeeID", request.EmpID)
                 .SetQueryParam("start", startDate.ToUnixTimeSeconds())
                 .SetQueryParam("end", endDate.ToUnixTimeSeconds())
-                .WithBasicAuth(request.Token, string.Empty);
+                // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                .WithHeader("Authorization", $"Basic {request.Token}");
 
             return url.GetJsonAsync<TimesheetModel[]>();
         }
