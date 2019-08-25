@@ -1,4 +1,3 @@
-using AzureFunctions.Autofac;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -15,17 +14,29 @@ using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AzureFunctions
 {
-    [DependencyInjectionConfig(typeof(DIConfig))]
-    public static class AutoCreateTimeSheet
+    public class AutoCreateTimeSheet
     {
+        private readonly ICollectDataQuery _collectDataQuery;
+        private readonly ISuggestTimeSheetQuery _suggestTimeSheetQuery;
+        private readonly IGetClientRateQuery _getClientRateQuery;
+        private readonly ICreateTimeSheetCommand _createTimeSheetCommand;
+
+        public AutoCreateTimeSheet(
+            ICollectDataQuery collectDataQuery,
+            ISuggestTimeSheetQuery suggestTimeSheetQuery,
+            IGetClientRateQuery getClientRateQuery,
+            ICreateTimeSheetCommand createTimeSheetCommand)
+        {
+            _collectDataQuery = collectDataQuery;
+            _suggestTimeSheetQuery = suggestTimeSheetQuery;
+            _getClientRateQuery = getClientRateQuery;
+            _createTimeSheetCommand = createTimeSheetCommand;
+        }
+
         [FunctionName("AutoCreateTimeSheet")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log,
-            [Inject] ICollectDataQuery collectDataQuery,
-            [Inject] ISuggestTimeSheetQuery suggestTimeSheetQuery,
-            [Inject] IGetClientRateQuery getClientRateQuery,
-            [Inject] ICreateTimeSheetCommand createTimeSheetCommand)
+            ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -44,9 +55,9 @@ namespace SSW.TimePRO.AzureFunctions
             date = date?.Replace(" ", "+");
 
             var collectDataRequest = new CollectDataRequest(tenantUrl, empID, date, token);
-            var collectedData = await collectDataQuery.Execute(collectDataRequest);
+            var collectedData = await _collectDataQuery.Execute(collectDataRequest);
 
-            var timesheet = await suggestTimeSheetQuery.Execute(collectedData.ToSuggestTimeSheetRequest());
+            var timesheet = await _suggestTimeSheetQuery.Execute(collectedData.ToSuggestTimeSheetRequest());
             if (timesheet.ClientID == null || timesheet.CategoryID == null || timesheet.ProjectID == null)
             {
                 var model = new ModelStateDictionary();
@@ -68,7 +79,7 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(model);
             }
 
-            var clientRate = await getClientRateQuery.Execute(new GetClientRateRequest(tenantUrl, empID, timesheet.ClientID, token));
+            var clientRate = await _getClientRateQuery.Execute(new GetClientRateRequest(tenantUrl, empID, timesheet.ClientID, token));
             if (clientRate?.ClientEmpRate == null || clientRate?.ClientTaxRate == null)
             {
                 var model = new ModelStateDictionary();
@@ -101,7 +112,7 @@ namespace SSW.TimePRO.AzureFunctions
                 try
                 {
                     var request = new CreateTimeSheetRequest(tenantUrl, timesheet, clientRate.ClientEmpRate.Value, clientRate.ClientTaxRate.Value, token);
-                    var success = await createTimeSheetCommand.Execute(request);
+                    var success = await _createTimeSheetCommand.Execute(request);
                     result.IsCreated = success.IsSuccessful;
                 }
                 catch (Exception e)

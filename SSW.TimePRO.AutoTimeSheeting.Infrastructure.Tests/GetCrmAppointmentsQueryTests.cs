@@ -32,7 +32,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
                 httpTest.CallLog.Should().HaveCount(1, "should not fail");
                 httpTest
                     .ShouldHaveCalled("http://tntUrl.xyz/Crm/Appointments?employeeID=JEK&start=1555855200&end=1556287200")
-                    .WithBasicAuth("token-1", string.Empty)
+                    // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                    //.WithBasicAuth("token-1", string.Empty)
                     .Times(1);
             }
         }
@@ -58,7 +59,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
                 httpTest.CallLog.Should().HaveCount(1, "should not fail");
                 httpTest
                     .ShouldHaveCalled("http://tntUrl.xyz/Crm/Appointments?employeeID=JEK&start=1555768800&end=1555855200")
-                    .WithBasicAuth("token-1", string.Empty)
+                    // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                    //.WithBasicAuth("token-1", string.Empty)
                     .Times(1);
             }
         }

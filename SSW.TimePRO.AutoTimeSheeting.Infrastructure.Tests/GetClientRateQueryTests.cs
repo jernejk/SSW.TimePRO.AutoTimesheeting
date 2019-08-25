@@ -26,12 +26,14 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
                 httpTest.CallLog.Should().HaveCount(2, "should not fail");
                 httpTest
                     .ShouldHaveCalled("http://tntUrl.xyz/Ajax/GetClientRate?empID=JEK&clientID=SSW")
-                    .WithBasicAuth("token-1", string.Empty)
+                    // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                    //.WithBasicAuth("token-1", string.Empty)
                     .Times(1);
 
                 httpTest
                     .ShouldHaveCalled("http://tntUrl.xyz/Ajax/GetClientTaxRate?clientID=SSW&timesheetID=0")
-                    .WithBasicAuth("token-1", string.Empty)
+                    // TimePro bug: Basic auth is not base64 decoded on the server and takes the raw token.
+                    //.WithBasicAuth("token-1", string.Empty)
                     .Times(1);
             }
         }

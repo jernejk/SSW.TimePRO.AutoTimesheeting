@@ -1,25 +1,32 @@
-using System;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using AzureFunctions.Autofac;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeSheet;
+using System;
+using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AzureFunctions
 {
-    [DependencyInjectionConfig(typeof(DIConfig))]
-    public static class SuggestTimeSheet
+    public class SuggestTimeSheet
     {
+        private readonly ICollectDataQuery _collectDataQuery;
+        private readonly ISuggestTimeSheetQuery _suggestTimeSheetQuery;
+
+        public SuggestTimeSheet(
+            ICollectDataQuery collectDataQuery,
+            ISuggestTimeSheetQuery suggestTimeSheetQuery)
+        {
+            _collectDataQuery = collectDataQuery;
+            _suggestTimeSheetQuery = suggestTimeSheetQuery;
+        }
+
         [FunctionName("SuggestTimeSheet")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log,
-            [Inject] ICollectDataQuery collectDataQuery,
-            [Inject] ISuggestTimeSheetQuery suggestTimeSheetQuery)
+            ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -36,9 +43,9 @@ namespace SSW.TimePRO.AzureFunctions
             date = date?.Replace(" ", "+");
 
             var collectDataRequest = new CollectDataRequest(tenantUrl, empID, date, token);
-            var collectedData = await collectDataQuery.Execute(collectDataRequest);
+            var collectedData = await _collectDataQuery.Execute(collectDataRequest);
 
-            var result = await suggestTimeSheetQuery.Execute(collectedData.ToSuggestTimeSheetRequest());
+            var result = await _suggestTimeSheetQuery.Execute(collectedData.ToSuggestTimeSheetRequest());
             return new JsonResult(result);
         }
     }

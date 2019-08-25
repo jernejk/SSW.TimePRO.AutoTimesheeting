@@ -1,4 +1,3 @@
-using AzureFunctions.Autofac;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -10,14 +9,19 @@ using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AzureFunctions
 {
-    [DependencyInjectionConfig(typeof(DIConfig))]
-    public static class ClientRate
+    public class ClientRate
     {
+        private readonly IGetClientRateQuery _getClientRateQuery;
+
+        public ClientRate(IGetClientRateQuery getClientRateQuery)
+        {
+            _getClientRateQuery = getClientRateQuery;
+        }
+
         [FunctionName("ClientRate")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log,
-            [Inject] IGetClientRateQuery query)
+            ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -33,7 +37,7 @@ namespace SSW.TimePRO.AzureFunctions
             }
 
             var request = new GetClientRateRequest(tenantUrl, empID, clientID, token);
-            var result = await query.Execute(request);
+            var result = await _getClientRateQuery.Execute(request);
 
             return new JsonResult(result);
         }

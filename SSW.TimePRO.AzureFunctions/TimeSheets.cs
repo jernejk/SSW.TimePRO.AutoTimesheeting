@@ -1,25 +1,29 @@
-using System;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using AzureFunctions.Autofac;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.GetTimesheets;
+using System;
 using System.Globalization;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AzureFunctions
 {
-    [DependencyInjectionConfig(typeof(DIConfig))]
-    public static class TimeSheets
+    public class TimeSheets
     {
+        private readonly IGetTimesheetsQuery _getTimesheetsQuery;
+
+        public TimeSheets(IGetTimesheetsQuery getTimesheetsQuery)
+        {
+            _getTimesheetsQuery = getTimesheetsQuery;
+        }
+
         [FunctionName("TimeSheets")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log,
-            [Inject] IGetTimesheetsQuery query)
+            ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -39,7 +43,7 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(validationModel);
             }
 
-            var result = await query.Execute(new GetTimesheetsRequest(tenantUrl, empID, startRaw, endRaw, token));
+            var result = await _getTimesheetsQuery.Execute(new GetTimesheetsRequest(tenantUrl, empID, startRaw, endRaw, token));
 
             return new JsonResult(result);
         }

@@ -38,7 +38,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests.Integration
                 { "token", "test-token" }
             };
             request.Query = new QueryCollection(queryParam);
-            var response = await AzureFunctions.ClientRate.Run(request, _logger, mockQuery.Object);
+            var func = new AzureFunctions.ClientRate(mockQuery.Object);
+            var response = await func.Run(request, _logger);
 
             response.Should().BeOfType<JsonResult>();
             var result = ((JsonResult)response).Value as ClientRateModel;
@@ -52,7 +53,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests.Integration
         public async Task ShouldFail()
         {
             var request = new DefaultHttpRequest(new DefaultHttpContext());
-            var response = await AzureFunctions.ClientRate.Run(request, _logger, null);
+            var func = new AzureFunctions.ClientRate(null);
+            var response = await func.Run(request, _logger);
 
             response.Should().BeOfType<BadRequestObjectResult>();
         }
