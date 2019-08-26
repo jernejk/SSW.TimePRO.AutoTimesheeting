@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.ClientRate;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
+using SSW.TimePRO.AutoTimeSheeting.Infrastructure.GitHub;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CreateTimeSheet;
@@ -26,6 +27,7 @@ namespace SSW.TimePRO.AzureFunctions
             builder.Services.AddTransient<ICreateTimeSheetCommand, CreateTimeSheetCommand>();
             builder.Services.AddTransient<IGetCommitsByEmpIDQuery, GetCommitsByEmpIDQuery>();
             builder.Services.AddTransient<IGetTimesheetsQuery, GetTimesheetsQuery>();
+            builder.Services.AddTransient<IGetGitHubCommitsQuery, GetGitHubCommitsQuery>();
         }
     }
 }

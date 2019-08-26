@@ -34,6 +34,8 @@ namespace SSW.TimePRO.AzureFunctions
             string empID = req.Query["empID"];
             string date = req.Query["date"];
             string token = req.Query["token"];
+            string githubUsername = req.Query["githubUsername"];
+            string githubToken = req.Query["githubToken"];
 
             if (string.IsNullOrEmpty(date))
             {
@@ -42,7 +44,7 @@ namespace SSW.TimePRO.AzureFunctions
 
             date = date?.Replace(" ", "+");
 
-            var collectDataRequest = new CollectDataRequest(tenantUrl, empID, date, token);
+            var collectDataRequest = new CollectDataRequest(tenantUrl, empID, date, token, githubUsername, githubToken);
             var collectedData = await _collectDataQuery.Execute(collectDataRequest);
 
             var result = await _suggestTimeSheetQuery.Execute(collectedData.ToSuggestTimeSheetRequest());
