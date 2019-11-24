@@ -60,11 +60,11 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
                         result.ProjectID = "GVOUF1";
                     }
 
-                    // Default to TimePro for now.
+                    // Default to SophieHub for now.
                     if (string.IsNullOrWhiteSpace(result.ProjectID))
                     {
                         result.SuggestedActions.SelectProject = true;
-                        result.ProjectID = "TP";
+                        result.ProjectID = "GVOUF1";
                     }
 
                     result.CategoryID = "WEBDEV";
