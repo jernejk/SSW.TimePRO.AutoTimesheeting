@@ -43,7 +43,7 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(validationModel);
             }
 
-            var result = await _getTimesheetsQuery.Execute(new GetTimesheetsRequest(tenantUrl, empID, startRaw, endRaw, token));
+            var result = await _getTimesheetsQuery.Execute(new GetTimesheets(tenantUrl, empID, startRaw, endRaw, token));
 
             return new JsonResult(result);
         }

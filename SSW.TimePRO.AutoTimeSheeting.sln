@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSW.TimePRO.AzureFunctions", "SSW.TimePRO.AzureFunctions\SSW.TimePRO.AzureFunctions.csproj", "{DB94ACED-B356-435A-9A1A-4D092B919818}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSW.TimePRO.AutoTimeSheeting.Infrastructure", "SSW.TimePRO.AutoTimeSheeting.Infrastructure\SSW.TimePRO.AutoTimeSheeting.Infrastructure.csproj", "{A775FD0F-4F7F-4473-97FD-F951A7857524}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests", "SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests\SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests.csproj", "{AA01EA3E-F30F-4F73-B52F-252F9EFB9E6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSW.TimePRO.Automation.AzureFunctions", "SSW.TimePRO.Automation.AzureFunctions\SSW.TimePRO.Automation.AzureFunctions.csproj", "{3FC33F37-C0AF-466B-9AF9-C575CD6CE5C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSW.TimePRO.AzureFunctions", "SSW.TimePRO.AzureFunctions\SSW.TimePRO.AzureFunctions.csproj", "{92BD8062-C2BF-427B-AE5D-4570570535B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DB94ACED-B356-435A-9A1A-4D092B919818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB94ACED-B356-435A-9A1A-4D092B919818}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB94ACED-B356-435A-9A1A-4D092B919818}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB94ACED-B356-435A-9A1A-4D092B919818}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A775FD0F-4F7F-4473-97FD-F951A7857524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A775FD0F-4F7F-4473-97FD-F951A7857524}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A775FD0F-4F7F-4473-97FD-F951A7857524}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,11 +25,22 @@ Global
 		{AA01EA3E-F30F-4F73-B52F-252F9EFB9E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA01EA3E-F30F-4F73-B52F-252F9EFB9E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA01EA3E-F30F-4F73-B52F-252F9EFB9E6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC33F37-C0AF-466B-9AF9-C575CD6CE5C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC33F37-C0AF-466B-9AF9-C575CD6CE5C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC33F37-C0AF-466B-9AF9-C575CD6CE5C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC33F37-C0AF-466B-9AF9-C575CD6CE5C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92BD8062-C2BF-427B-AE5D-4570570535B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92BD8062-C2BF-427B-AE5D-4570570535B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92BD8062-C2BF-427B-AE5D-4570570535B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92BD8062-C2BF-427B-AE5D-4570570535B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE8A834D-0180-43AA-B739-727C2AAB7959}
+	EndGlobalSection
+	GlobalSection(NDepend) = preSolution
+		Project = ".\SSW.TimePRO.AutoTimeSheeting.ndproj"
 	EndGlobalSection
 EndGlobal

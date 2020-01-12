@@ -38,19 +38,19 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
                 Date = request.Date
             };
 
-            var crmAppointmentsTask = _getCrmAppointmentsQuery.Execute(new GetCrmAppointmentsRequest(
+            var crmAppointmentsTask = _getCrmAppointmentsQuery.Execute(new GetCrmAppointments(
                     request.TenantUrl,
                     request.EmpID,
                     request.Date,
                     request.Date,
                     request.Token));
 
-            var recentProjectsTask = _getRecentProjectsQuery.Execute(new GetRecentProjectsRequest(
+            var recentProjectsTask = _getRecentProjectsQuery.Execute(new GetRecentProjects(
                     request.TenantUrl,
                     request.EmpID,
                     request.Token));
 
-            Task<TimesheetModel[]> timesheetsTask = _getTimesheetsQuery.Execute(new GetTimesheetsRequest(
+            var timesheetsTask = _getTimesheetsQuery.Execute(new GetTimesheets.GetTimesheets(
                     request.TenantUrl,
                     request.EmpID,
                     request.Date,
@@ -70,14 +70,14 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
 
         private async Task<IEnumerable<GitCommitModel>> GetCommits(CollectDataRequest request)
         {
-            var gitHubCommitsTask = _getGitHubCommitsQuery.Execute(new GetGitHubCommitsRequest
+            var gitHubCommitsTask = _getGitHubCommitsQuery.Execute(new GetGitHubCommits
             {
                 Username = request.GitHubUsername,
                 Token = request.GitHubToken,
                 Date = request.Date
             });
 
-            var azureDevOpsCommitsTask = _getCommitsByEmpIDQuery.Execute(new GetCommitsByEmpIDRequest(
+            var azureDevOpsCommitsTask = _getCommitsByEmpIDQuery.Execute(new GetCommitsByEmpID(
                                 request.TenantUrl,
                                 request.EmpID,
                                 request.Date,

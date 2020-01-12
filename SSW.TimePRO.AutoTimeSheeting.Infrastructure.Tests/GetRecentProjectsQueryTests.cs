@@ -11,13 +11,13 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
         [Fact]
         public async Task ShouldRecentProjects()
         {
-            var query = new GetRecentProjectsQuery();
+            var query = new GetRecentProjectsHandler();
             using (var httpTest = new HttpTest())
             {
                 string response = "[{\"Client\":\"SSWTest\",\"ClientID\":\"SSW\",\"Project\":\"Non-working day (e.g. Leave)\",\"ProjectID\":\"LEAVE\",\"Iteration\":null,\"IterationId\":null,\"Category\":\"Non-working day - Public Holiday\",\"CategoryID\":\"LNWD\",\"DateCreated\":\"\\/Date(1556200800000)\\/\"}]";
                 httpTest.RespondWith(response, 200);
 
-                var request = new GetRecentProjectsRequest("http://tntUrl.xyz", "JEK", "token-1");
+                var request = new GetRecentProjects("http://tntUrl.xyz", "JEK", "token-1");
                 var result = await query.Execute(request);
 
                 result.Should().HaveCount(1, "raw JSON response has only one response");
@@ -33,12 +33,12 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
         [Fact]
         public async Task ShouldReturnNull()
         {
-            var query = new GetRecentProjectsQuery();
+            var query = new GetRecentProjectsHandler();
             using (var httpTest = new HttpTest())
             {
                 httpTest.RespondWith("", 200);
 
-                var request = new GetRecentProjectsRequest("http://tntUrl.xyz", "JEK", "token-1");
+                var request = new GetRecentProjects("http://tntUrl.xyz", "JEK", "token-1");
                 var result = await query.Execute(request);
 
                 result.Should().BeNull("empty string results in null");

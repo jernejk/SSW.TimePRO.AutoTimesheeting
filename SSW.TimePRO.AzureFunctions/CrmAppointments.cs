@@ -43,7 +43,7 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(validationModel);
             }
 
-            var result = await _getCrmAppointmentsQuery.Execute(new GetCrmAppointmentsRequest(tenantUrl, empID, startRaw, endRaw, token));
+            var result = await _getCrmAppointmentsQuery.Execute(new GetCrmAppointments(tenantUrl, empID, startRaw, endRaw, token));
 
             return new JsonResult(result);
         }

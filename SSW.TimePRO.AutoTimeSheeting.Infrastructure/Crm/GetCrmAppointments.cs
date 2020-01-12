@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MediatR;
+using System.Collections.Generic;
 
 namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm
 {
-    public class GetCrmAppointmentsRequest : BaseTimeProRequest
+    public class GetCrmAppointments : BaseTimeProRequest, IRequest<IEnumerable<CrmAppointmentModel>>
     {
-        public GetCrmAppointmentsRequest(string tenantUrl, string empID, string start, string end, string token)
+        public GetCrmAppointments(string tenantUrl, string empID, string start, string end, string token)
             : base(tenantUrl, token)
         {
             EmpID = empID;

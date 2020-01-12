@@ -19,15 +19,15 @@ namespace SSW.TimePRO.AzureFunctions
         public override void Configure(IFunctionsHostBuilder builder)
         {
             // register some services
-            builder.Services.AddTransient<IGetRecentProjectsQuery, GetRecentProjectsQuery>();
+            builder.Services.AddTransient<IGetRecentProjectsQuery, GetRecentProjectsHandler>();
             builder.Services.AddTransient<IGetClientRateQuery, GetClientRateQuery>();
-            builder.Services.AddTransient<IGetCrmAppointmentsQuery, GetCrmAppointmentsQuery>();
+            builder.Services.AddTransient<IGetCrmAppointmentsQuery, GetCrmAppointmentsHandler>();
             builder.Services.AddTransient<ICollectDataQuery, CollectDataQuery>();
             builder.Services.AddTransient<ISuggestTimeSheetQuery, SuggestTimeSheetQuery>();
             builder.Services.AddTransient<ICreateTimeSheetCommand, CreateTimeSheetCommand>();
-            builder.Services.AddTransient<IGetCommitsByEmpIDQuery, GetCommitsByEmpIDQuery>();
-            builder.Services.AddTransient<IGetTimesheetsQuery, GetTimesheetsQuery>();
-            builder.Services.AddTransient<IGetGitHubCommitsQuery, GetGitHubCommitsQuery>();
+            builder.Services.AddTransient<IGetCommitsByEmpIDQuery, GetCommitsByEmpIDHandler>();
+            builder.Services.AddTransient<IGetTimesheetsQuery, GetTimesheetsHandler>();
+            builder.Services.AddTransient<IGetGitHubCommitsQuery, GetGitHubCommitsHandler>();
         }
     }
 }

@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.1" />
     <PackageReference Include="Flurl.Http" Version="2.4.1" />
+    <PackageReference Include="MediatR" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

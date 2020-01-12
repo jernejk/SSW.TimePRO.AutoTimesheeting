@@ -12,13 +12,13 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
         [Fact]
         public async Task ShouldRunRightUrl()
         {
-            var query = new GetCrmAppointmentsQuery();
+            var query = new GetCrmAppointmentsHandler();
             using (var httpTest = new HttpTest())
             {
                 string response = "[{\"id\":\"e5fcf48c-5318-e911-81d2-00155d012b45\",\"start\":\"2019-04-25 09:00:00\",\"end\":\"2019-04-25 18:00:00\",\"title\":\"SSW (SSW) - Anzac Day public holiday (All of Australia)\",\"allDay\":false,\"editable\":false,\"clientId\":\"SSW\",\"projectId\":\"\",\"iterationId\":null}]";
                 httpTest.RespondWith(response, 200);
 
-                var request = new GetCrmAppointmentsRequest(
+                var request = new GetCrmAppointments(
                     "http://tntUrl.xyz",
                     "JEK",
                     // UTC+0
@@ -41,13 +41,13 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
         [Fact]
         public async Task ShouldCorrectlyAddDayForSingleDayQuery()
         {
-            var query = new GetCrmAppointmentsQuery();
+            var query = new GetCrmAppointmentsHandler();
             using (var httpTest = new HttpTest())
             {
                 string response = "[{\"id\":\"e5fcf48c-5318-e911-81d2-00155d012b45\",\"start\":\"2019-04-25 09:00:00\",\"end\":\"2019-04-25 18:00:00\",\"title\":\"SSW (SSW) - Anzac Day public holiday (All of Australia)\",\"allDay\":false,\"editable\":false,\"clientId\":\"SSW\",\"projectId\":\"\",\"iterationId\":null}]";
                 httpTest.RespondWith(response, 200);
 
-                var request = new GetCrmAppointmentsRequest(
+                var request = new GetCrmAppointments(
                     "http://tntUrl.xyz",
                     "JEK",
                     "2019-04-21+10",
@@ -68,10 +68,10 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
         [Fact(Skip = "Validation is currently not working as expected")]
         public async Task ShouldReturnFailDueIncorrectDateKind()
         {
-            var query = new GetCrmAppointmentsQuery();
+            var query = new GetCrmAppointmentsHandler();
             using (var httpTest = new HttpTest())
             {
-                var request = new GetCrmAppointmentsRequest(
+                var request = new GetCrmAppointments(
                     "http://tntUrl.xyz",
                     "JEK",
                     // UTC+0

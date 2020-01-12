@@ -1,17 +1,24 @@
 ﻿using Flurl;
 using Flurl.Http;
+using MediatR;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps
 {
-    public class GetCommitsByEmpIDQuery : IGetCommitsByEmpIDQuery
+    public class GetCommitsByEmpIDHandler : IGetCommitsByEmpIDQuery, IRequestHandler<GetCommitsByEmpID, IEnumerable<GitCommitModel>>
     {
-        public async Task<IEnumerable<GitCommitModel>> Execute(GetCommitsByEmpIDRequest request)
+        public Task<IEnumerable<GitCommitModel>> Execute(GetCommitsByEmpID request)
+        {
+            return Handle(request, default);
+        }
+
+        public async Task<IEnumerable<GitCommitModel>> Handle(GetCommitsByEmpID request, CancellationToken cancellationToken)
         {
             var url = new Url(request.TenantUrl)
                 .AppendPathSegment("/Ajax/GetTfsSubscriptions")
@@ -28,7 +35,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps
             return commits.SelectMany(c => c);
         }
 
-        private async Task<IEnumerable<GitCommitModel>> GetCommits(GetCommitsByEmpIDRequest request, AzureDevOpsSubscription subscription)
+        private async Task<IEnumerable<GitCommitModel>> GetCommits(GetCommitsByEmpID request, AzureDevOpsSubscription subscription)
         {
             DateTimeOffset startDate = DateTimeOffset.Parse(request.Date, CultureInfo.InvariantCulture);
             DateTimeOffset endDate = startDate.AddDays(1);
@@ -60,6 +67,6 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps
 
     public interface IGetCommitsByEmpIDQuery
     {
-        Task<IEnumerable<GitCommitModel>> Execute(GetCommitsByEmpIDRequest request);
+        Task<IEnumerable<GitCommitModel>> Execute(GetCommitsByEmpID request);
     }
 }

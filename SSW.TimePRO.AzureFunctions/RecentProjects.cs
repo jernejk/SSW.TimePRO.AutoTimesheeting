@@ -35,7 +35,7 @@ namespace SSW.TimePRO.AzureFunctions
                 return new BadRequestObjectResult(validationModel);
             }
 
-            var request = new GetRecentProjectsRequest(tenantUrl, empID, token);
+            var request = new GetRecentProjects(tenantUrl, empID, token);
             var result = await _getRecentProjectsQuery.Execute(request);
 
             return new JsonResult(result);
