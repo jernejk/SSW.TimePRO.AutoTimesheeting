@@ -4,6 +4,7 @@
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <AzureFunctionsVersion>V2</AzureFunctionsVersion>
+    <LangVersion>latestMajor</LangVersion>
   </PropertyGroup>
   
   <ItemGroup>
