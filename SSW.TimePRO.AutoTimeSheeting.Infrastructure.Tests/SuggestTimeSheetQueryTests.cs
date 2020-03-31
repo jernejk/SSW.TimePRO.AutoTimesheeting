@@ -162,8 +162,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.Tests
         // Sophie is currently not supported as it can take almost 2 minutes to get results from Azure DevOps.
         [Theory]
         [InlineData("Data/timepro-api-commits-timepro.json", "2019-04-18", "TP", "WEBDEV", "Commits:\n- Added invoice templates.\n- Fixed SharePoint connectivity issue from local machine.\n- Ignore .angulardocs.json", false, false)]
-        [InlineData("Data/timepro-api-commits-empty.json", "2019-03-12", "GVOUF1", "WEBDEV", null, true, true)]
-        [InlineData("Data/timepro-api-commits-sophie.json", "2019-03-14", "GVOUF1", "WEBDEV", "Commits:\n- Added default timezone as a configuration\n- Minor refactor of the name\n- Added storybook\n- Added more storybooks", false, false)]
+        [InlineData("Data/timepro-api-commits-empty.json", "2019-03-12", "TP", "WEBDEV", null, true, true)]
+        [InlineData("Data/timepro-api-commits-sophie.json", "2019-03-14", "GVOUF1", "WEBDEV", "Commits:\n- Added default timezone as a configuration\n- Minor refactor of the name\n- Added storybook\n- Added more storybooks\n- Merged PR 1695: Added support for the local timezone of the device", false, false)]
         [InlineData("Data/timepro-api-commits-sophie-ai.json", "2019-03-14", "8897DK", "WEBDEV", "Commits:\n- Improved response for \"Who works in Melbourne?\" question.\n- Added Postman collections for testing.", false, false)]
         public async Task ShouldSuggestInternalWorkTimeSheet(string gitCommitsFile, string date, string projectId, string categoryId, string comment, bool shouldSelectProject, bool shouldEnterDescription)
         {
