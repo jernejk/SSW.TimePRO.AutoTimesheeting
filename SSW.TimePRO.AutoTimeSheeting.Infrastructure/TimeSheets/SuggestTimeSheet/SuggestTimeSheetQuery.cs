@@ -59,12 +59,17 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
                     {
                         result.ProjectID = "GVOUF1";
                     }
+                    else if(repoName.IndexOf("ssw.induction", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        result.ProjectID = "BM1001";
+                    }
 
                     // Default to SophieHub for now.
                     if (string.IsNullOrWhiteSpace(result.ProjectID))
                     {
+                        // I'm now TimePro Product Champion.
                         result.SuggestedActions.SelectProject = true;
-                        result.ProjectID = "GVOUF1";
+                        result.ProjectID = "TP";
                     }
 
                     result.CategoryID = "WEBDEV";
@@ -124,7 +129,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.SuggestTimeShee
             else if (commits?.Any() == true)
             {
                 var messages = commits
-                    .Where(c => c.Comment.IndexOf("merge", StringComparison.OrdinalIgnoreCase) != 0)
+                    .Where(c => c.Comment.IndexOf("merge", StringComparison.OrdinalIgnoreCase) != 0 || c.Comment.IndexOf("Merged PR ", StringComparison.OrdinalIgnoreCase) >= 0)
                     .Select(c => c.Comment)
                     .ToList();
 
