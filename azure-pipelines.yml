@@ -17,7 +17,7 @@ variables:
 steps:
 - task: UseDotNet@2
   inputs:
-    version: '3.0.x'
+    version: '3.1.201'
 
 - task: NuGetToolInstaller@0
 
@@ -29,6 +29,7 @@ steps:
   inputs:
     command: 'build'
     projects: 'SSW.TimePRO.AzureFunctions/SSW.TimePRO.AzureFunctions.csproj'
+    arguments: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
 
 - task: DotNetCoreCLI@2
   inputs:
