@@ -1,6 +1,7 @@
 ﻿using Flurl;
 using Flurl.Http;
 using MediatR;
+using Newtonsoft.Json;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.AzureDevOps;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,8 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.GitHub
 
             try
             {
-                var events = await url.GetJsonAsync<EventData[]>();
+                var json = await url.GetStringAsync();
+                var events = JsonConvert.DeserializeObject<EventData[]>(json);
 
                 var pushEvents = events
                         .Where(e => e.type == "PushEvent" && (e.payload?.commits?.Any() ?? false) && e.created_at > startDate && e.created_at < endDate)

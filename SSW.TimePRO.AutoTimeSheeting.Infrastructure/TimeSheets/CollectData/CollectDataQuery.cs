@@ -3,6 +3,7 @@ using SSW.TimePRO.AutoTimeSheeting.Infrastructure.Crm;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.GitHub;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.RecentProjects;
 using SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.GetTimesheets;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -86,7 +87,7 @@ namespace SSW.TimePRO.AutoTimeSheeting.Infrastructure.TimeSheets.CollectData
             var gitHubCommits = await gitHubCommitsTask;
             var azureDevOpsCommits = await azureDevOpsCommitsTask;
 
-            var commits = new List<GitCommitModel>(gitHubCommits.data);
+            var commits = new List<GitCommitModel>(gitHubCommits.data ?? Array.Empty<GitCommitModel>());
             commits.AddRange(azureDevOpsCommits);
             return commits;
         }
